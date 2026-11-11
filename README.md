@@ -24,32 +24,7 @@ php artisan key:generate
 
 On Linux/macOS use `cp .env.example .env` instead of `copy`.
 
-### Configure MySQL
-
-`.env.example` already uses MySQL. Adjust credentials in `.env` if needed:
-
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=first_exercise
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-Create the database:
-
-```sql
-CREATE DATABASE first_exercise CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-```
-
-Or from the terminal:
-
-```bash
-mysql -u root -e "CREATE DATABASE IF NOT EXISTS first_exercise CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-```
-
-Run migrations and seed sample profiles:
+Make sure MySQL is running and the database name in `.env` matches your setup (default: `first_exercise`). Then:
 
 ```bash
 php artisan migrate --seed
