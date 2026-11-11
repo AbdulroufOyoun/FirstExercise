@@ -6,7 +6,7 @@ Laravel API for managing user profiles (`first_name`, `last_name`, `followers`, 
 
 - PHP 8.2+
 - Composer
-- SQLite (default) or MySQL/PostgreSQL
+- MySQL 8+
 
 Optional: [Laravel Herd](https://herd.laravel.com/) for local serving on Windows/macOS.
 
@@ -24,25 +24,9 @@ php artisan key:generate
 
 On Linux/macOS use `cp .env.example .env` instead of `copy`.
 
-Create the SQLite database file if it does not exist:
+### Configure MySQL
 
-```bash
-# Windows (PowerShell)
-New-Item -ItemType File -Path database/database.sqlite -Force
-
-# Linux / macOS
-touch database/database.sqlite
-```
-
-Run migrations and seed sample profiles:
-
-```bash
-php artisan migrate --seed
-```
-
-### Using MySQL instead of SQLite
-
-In `.env` set:
+`.env.example` already uses MySQL. Adjust credentials in `.env` if needed:
 
 ```env
 DB_CONNECTION=mysql
@@ -53,7 +37,23 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Then create the database and run `php artisan migrate --seed`.
+Create the database:
+
+```sql
+CREATE DATABASE first_exercise CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+Or from the terminal:
+
+```bash
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS first_exercise CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+```
+
+Run migrations and seed sample profiles:
+
+```bash
+php artisan migrate --seed
+```
 
 ## Run the app
 
